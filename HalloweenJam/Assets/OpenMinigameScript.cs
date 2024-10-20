@@ -4,31 +4,37 @@ using UnityEngine;
 
 public class OpenMinigameScript : MonoBehaviour
 {
-    [SerializeField] private GameObject cam;
-    [SerializeField] private GameObject miniGame;
+	[SerializeField] private GameObject cam;
+	[SerializeField] private GameObject miniGame;
 
-    private void OnTriggerEnter(Collider col)
-    {
-        if(col.gameObject.tag == "Player")
-        {
-            print("Player in");
-            PlayerInteract player = col.gameObject.GetComponent<PlayerInteract>();
-            player.interactable = this;
-        }
-    }
+	private void OnTriggerEnter(Collider col)
+	{
+		if(col.gameObject.tag == "Player")
+		{
+			print("Player in");
+			PlayerInteract player = col.gameObject.GetComponent<PlayerInteract>();
+			player.interactable = this;
+		}
+	}
 
-    private void OnTriggerExit(Collider col)
-    {
-        if(col.gameObject.tag == "Player")
-        {
-            print("Player in");
-            PlayerInteract player = col.gameObject.GetComponent<PlayerInteract>();
-            player.interactable = null;
-        }
-    }
+	private void OnTriggerExit(Collider col)
+	{
+		if(col.gameObject.tag == "Player")
+		{
+			print("Player in");
+			PlayerInteract player = col.gameObject.GetComponent<PlayerInteract>();
+			player.interactable = null;
+		}
+	}
 
-    public void Open()
-    {
-        cam.SetActive(true);
-    }
+	public void Open()
+	{
+		cam.SetActive(true);
+		if(miniGame != null)
+		{
+			miniGame.active = true;
+		}
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+	}
 }

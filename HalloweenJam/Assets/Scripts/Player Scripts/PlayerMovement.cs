@@ -28,7 +28,9 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        mainCamera = Camera.main; // Assuming the main camera is tagged as "MainCamera"
+        mainCamera = Camera.main;
+		Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update() 
@@ -36,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 realVelocity = (transform.position - previousPosition) / Time.deltaTime;
         previousPosition = transform.position;
         anim.SetFloat("Velocity", realVelocity.magnitude);
-        print(realVelocity.magnitude);
         
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (isGrounded && velocity.y < 0) {
